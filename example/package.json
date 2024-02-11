@@ -1,15 +1,16 @@
 {
-  "name": "app",
-  "version": "0.0.1",
+  "name": "my-cli",
+  "version": "1.0.0",
   "description": "Example App",
-  "main": "index.js",
   "scripts": {
-    "postinstall": "go-npm install",
-    "preuninstall": "go-npm uninstall"
+    "postinstall": "go-npm2 install"
+  },
+  "dependencies": {
+    "go-npm2": "1.0.0"
   },
   "goBinary": {
-    "name": "myBinaryName",
+    "name": "go-demo-cli",
     "path": "./bin",
-    "url": "https://github.com/user/myrepo/releases/download/v{{version}}/myBinaryName{{platform}}_{{arch}}.tar.gz"
+    "url": "https://github.com/devraul/go-demo-cli/releases/download/v{{version}}/go-demo-cli_{{platform}}_{{arch}}.tar.gz"
   }
 }
