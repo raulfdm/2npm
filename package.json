@@ -32,10 +32,5 @@
     "tsx": "4.7.1",
     "typescript": "5.3.3",
     "vite": "5.1.1"
-  },
-  "goBinary": {
-    "name": "node-versions-cli",
-    "path": "./dist",
-    "url": "https://github.com/raulfdm/node-versions-cli/releases/download/v{{version}}/{{bin_name}}_{{platform}}_{{arch}}.tar.gz"
   }
 }
