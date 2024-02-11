@@ -1,3 +1,3 @@
 # go-npm2
 
-WIP
+TODO
