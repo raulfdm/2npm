@@ -1,6 +1,6 @@
 {
   "name": "go-npm2",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Distribute and install Go binaries via NPM",
   "type": "module",
   "license": "MIT",
