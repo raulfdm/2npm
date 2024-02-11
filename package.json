@@ -18,7 +18,6 @@
     "dev": "tsx src/index.ts"
   },
   "dependencies": {
-    "@changesets/cli": "2.27.1",
     "@manypkg/get-packages": "2.2.0",
     "tar": "6.2.0",
     "zod": "3.22.4",
@@ -26,6 +25,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.5.3",
+    "@changesets/cli": "2.27.1",
     "@types/node": "20",
     "@types/tar": "6.1.11",
     "execa": "8.0.1",
