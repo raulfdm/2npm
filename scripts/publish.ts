@@ -1,4 +1,4 @@
-import { execaCommand } from "execa";
+import { execaCommand, $ } from "execa";
 
 console.info("Starting release process");
 
