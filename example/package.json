@@ -1,19 +1,19 @@
 {
-  "name": "my-cli",
-  "version": "1.0.1",
-  "description": "Example of a CLI built with Go and distributed via NPM",
-  "bin": {
-    "my-cli": "./index.js"
-  },
-  "scripts": {
-    "postinstall": "go-npm2"
-  },
-  "dependencies": {
-    "go-npm2": "0.0.3"
-  },
-  "goBinary": {
-    "name": "go-demo-cli",
-    "path": "./bin",
-    "url": "https://github.com/devraul/go-demo-cli/releases/download/v{{version}}/go-demo-cli_{{platform}}_{{arch}}.tar.gz"
-  }
+	"name": "my-cli",
+	"version": "1.0.1",
+	"description": "Example of a CLI built with Go and distributed via NPM",
+	"bin": {
+		"my-cli": "./index.js"
+	},
+	"scripts": {
+		"postinstall": "go-npm2"
+	},
+	"dependencies": {
+		"go-npm2": "0.0.3"
+	},
+	"goBinary": {
+		"name": "go-demo-cli",
+		"path": "./bin",
+		"url": "https://github.com/devraul/go-demo-cli/releases/download/v{{version}}/go-demo-cli_{{platform}}_{{arch}}.tar.gz"
+	}
 }
