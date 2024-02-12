@@ -1,14 +1,14 @@
+import path from "node:path";
+import { getPackagesSync } from "@manypkg/get-packages";
 import {
   ARCH_MAPPING,
   PLATFORM_MAPPING,
-  supportedArches,
-  supportedPlatforms,
   type PackageJson,
   type SupportedArchs,
   type SupportedPlatforms,
+  supportedArches,
+  supportedPlatforms,
 } from "./schemas";
-import { getPackagesSync } from "@manypkg/get-packages";
-import path from "node:path";
 
 export function getProjectConfig() {
   const arch = getArch();
