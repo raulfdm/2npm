@@ -1,5 +1,11 @@
 # go-npm2
 
+## 0.1.0
+
+### Minor Changes
+
+- 06d4521: remove zod in favor of less dependencies. Now, all validation is made manually
+
 ## 0.0.3
 
 ### Patch Changes
