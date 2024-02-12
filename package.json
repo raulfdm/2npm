@@ -10,10 +10,15 @@
     "url": "https://github.com/raulfdm/go-npm2.git"
   },
   "author": "Raul Melo <contact@raulmelo.me>",
+  "files": [
+    "index.js",
+    "dist"
+  ],
   "bin": {
     "go-npm2": "index.js"
   },
   "scripts": {
+    "prepack": "pnpm run build",
     "build": "vite build",
     "dev": "tsx src/index.ts"
   },
