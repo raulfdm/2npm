@@ -1,107 +1,180 @@
-import { fromZodError } from "zod-validation-error";
-import {
-  ARCH_MAPPING,
-  PLATFORM_MAPPING,
-  PackageJson,
-  SupportedArchs,
-  SupportedPlatforms,
-} from "./schemas";
-import { getPackagesSync } from "@manypkg/get-packages";
 import path from "node:path";
+import { getPackagesSync } from "@manypkg/get-packages";
+import {
+	ARCH_MAPPING,
+	PLATFORM_MAPPING,
+	type PackageJson,
+	type SupportedArchs,
+	type SupportedPlatforms,
+	supportedArches,
+	supportedPlatforms,
+} from "./schemas";
 
 export function getProjectConfig() {
-  const arch = getArch();
-  const platform = getPlatform();
-  const { rootDir, ...pkgJson } = readPackageJson();
-  const metadata = getMetadata(pkgJson, platform, arch);
+	const arch = getArch();
+	const platform = getPlatform();
+	const { rootDir, ...pkgJson } = readPackageJson();
+	const metadata = getMetadata(pkgJson, platform, arch);
 
-  return {
-    arch,
-    platform,
-    pkgJson,
-    metadata,
-    rootDir,
-    absoluteDistPath: `${rootDir}/dist`,
-    temp: {
-      folder: path.join(rootDir, "temp"),
-      filename: "binary.tar.gz",
-      get filePath() {
-        return path.join(this.folder, this.filename);
-      },
-    },
-  } as const;
+	return {
+		arch,
+		platform,
+		pkgJson,
+		metadata,
+		rootDir,
+		absoluteDistPath: `${rootDir}/dist`,
+		temp: {
+			folder: path.join(rootDir, "temp"),
+			filename: "binary.tar.gz",
+			get filePath() {
+				return path.join(this.folder, this.filename);
+			},
+		},
+	} as const;
 }
 
 export type ProjectConfig = ReturnType<typeof getProjectConfig>;
 
-function getArch() {
-  const isSupportedArch = SupportedArchs.safeParse(process.arch);
+function getArch(): SupportedArchs {
+	// biome-ignore lint/suspicious/noExplicitAny: we don't know the process.arg
+	const isSupportedArch = supportedArches.includes(process.arch as any);
 
-  if (!isSupportedArch.success) {
-    throw new Error(`Unsupported architecture: ${process.arch}`);
-  }
+	if (!isSupportedArch) {
+		throw new Error(`Unsupported architecture: ${process.arch}`);
+	}
 
-  return isSupportedArch.data;
+	return process.arch as SupportedArchs;
 }
 
-function getPlatform() {
-  const isSupportedPlatform = SupportedPlatforms.safeParse(process.platform);
+function getPlatform(): SupportedPlatforms {
+	const isSupportedPlatform = supportedPlatforms.includes(
+		// biome-ignore lint/suspicious/noExplicitAny: we don't know the process.platform value
+		process.platform as any,
+	);
 
-  if (!isSupportedPlatform.success) {
-    throw new Error(`Unsupported platform: ${process.platform}`);
-  }
+	if (!isSupportedPlatform) {
+		throw new Error(`Unsupported platform: ${process.platform}`);
+	}
 
-  return isSupportedPlatform.data;
+	return process.platform as SupportedPlatforms;
 }
 
 function readPackageJson(): PackageJson & {
-  rootDir: string;
+	rootDir: string;
 } {
-  const { rootPackage, rootDir } = getPackagesSync(process.cwd());
+	const { rootPackage, rootDir } = getPackagesSync(process.cwd());
 
-  const packageJsonResult = PackageJson.safeParse(rootPackage?.packageJson);
+	const packageJsonResult = validatePackageJson(rootPackage?.packageJson);
 
-  if (!packageJsonResult.success) {
-    console.error(
-      "[PACKAGE_JSON_PARSING]",
-      fromZodError(packageJsonResult.error).message
-    );
+	if (!packageJsonResult.success) {
+		console.error("[PACKAGE_JSON_PARSING]", packageJsonResult.error);
+		process.exit(1);
+	}
 
-    process.exit(1);
-  }
+	return {
+		...packageJsonResult.data,
+		rootDir,
+	};
+}
 
-  return {
-    ...packageJsonResult.data,
-    rootDir,
-  };
+type ValidationResult =
+	| { success: true; data: PackageJson }
+	| { success: false; error: string };
+
+function validatePackageJson(pkgJson: unknown): ValidationResult {
+	if (pkgJson === null || typeof pkgJson !== "object") {
+		return {
+			success: false,
+			error: "Invalid package.json",
+		};
+	}
+
+	if (typeof pkgJson !== "object") {
+		return {
+			success: false,
+			error: "Invalid package.json",
+		};
+	}
+
+	if ("version" in pkgJson === false) {
+		return {
+			success: false,
+			error: "Invalid package.json: version is not a string",
+		};
+	}
+
+	if ("goBinary" in pkgJson === false) {
+		return {
+			success: false,
+			error: "Invalid package.json: goBinary is not an object",
+		};
+	}
+
+	if (typeof pkgJson.goBinary !== "object") {
+		return {
+			success: false,
+			error: "Invalid package.json: goBinary is not an object",
+		};
+	}
+
+	// biome-ignore lint/style/noNonNullAssertion: <explanation>
+	const goBinary = pkgJson.goBinary!;
+
+	if ("name" in goBinary === false) {
+		return {
+			success: false,
+			error: "Invalid package.json: goBinary.name is not a string",
+		};
+	}
+
+	if (typeof goBinary.name !== "string") {
+		return {
+			success: false,
+			error: "Invalid package.json: goBinary.name is not a string",
+		};
+	}
+
+	if ("url" in goBinary === false) {
+		return {
+			success: false,
+			error: "Invalid package.json: goBinary.url is not a string",
+		};
+	}
+
+	const result = {
+		success: true,
+		data: pkgJson as PackageJson,
+	} as const;
+
+	return result;
 }
 
 function getMetadata(
-  { goBinary, version }: PackageJson,
-  platform: SupportedPlatforms,
-  arch: SupportedArchs
+	{ goBinary, version }: PackageJson,
+	platform: SupportedPlatforms,
+	arch: SupportedArchs,
 ) {
-  let binaryName = goBinary.name;
-  let url = goBinary.url;
+	let binaryName = goBinary.name;
+	let url = goBinary.url;
 
-  if (version.startsWith("v")) {
-    version = version.substring(1); // strip the 'v' if necessary v0.0.1 => 0.0.1
-  }
+	if (version.startsWith("v")) {
+		version = version.substring(1); // strip the 'v' if necessary v0.0.1 => 0.0.1
+	}
 
-  // Binary name on Windows has .exe suffix
-  if (platform === "win32") {
-    binaryName += ".exe";
-  }
+	// Binary name on Windows has .exe suffix
+	if (platform === "win32") {
+		binaryName += ".exe";
+	}
 
-  // Interpolate variables in URL, if necessary
-  url = url.replace(/{{arch}}/g, ARCH_MAPPING[arch]);
-  url = url.replace(/{{platform}}/g, PLATFORM_MAPPING[platform]);
-  url = url.replace(/{{version}}/g, version);
-  url = url.replace(/{{bin_name}}/g, binaryName);
+	// Interpolate variables in URL, if necessary
+	url = url.replace(/{{arch}}/g, ARCH_MAPPING[arch]);
+	url = url.replace(/{{platform}}/g, PLATFORM_MAPPING[platform]);
+	url = url.replace(/{{version}}/g, version);
+	url = url.replace(/{{bin_name}}/g, binaryName);
 
-  return {
-    binaryName,
-    url,
-    version,
-  };
+	return {
+		binaryName,
+		url,
+		version,
+	};
 }

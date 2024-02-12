@@ -1,41 +1,36 @@
 {
-  "name": "go-npm2",
-  "version": "0.0.3",
-  "description": "Distribute and install Go binaries via NPM",
-  "type": "module",
-  "license": "MIT",
-  "homepage": "https://github.com/raulfdm/go-npm2",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/raulfdm/go-npm2.git"
-  },
-  "author": "Raul Melo <contact@raulmelo.me>",
-  "files": [
-    "index.js",
-    "dist"
-  ],
-  "bin": {
-    "go-npm2": "index.js"
-  },
-  "scripts": {
-    "prepack": "pnpm run build",
-    "build": "vite build",
-    "dev": "tsx src/index.ts"
-  },
-  "dependencies": {
-    "@manypkg/get-packages": "2.2.0",
-    "tar": "6.2.0",
-    "zod": "3.22.4",
-    "zod-validation-error": "3.0.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.5.3",
-    "@changesets/cli": "2.27.1",
-    "@types/node": "20",
-    "@types/tar": "6.1.11",
-    "execa": "8.0.1",
-    "tsx": "4.7.1",
-    "typescript": "5.3.3",
-    "vite": "5.1.1"
-  }
+	"name": "go-npm2",
+	"version": "0.0.3",
+	"description": "Distribute and install Go binaries via NPM",
+	"type": "module",
+	"license": "MIT",
+	"homepage": "https://github.com/raulfdm/go-npm2",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/raulfdm/go-npm2.git"
+	},
+	"author": "Raul Melo <contact@raulmelo.me>",
+	"files": ["index.js", "dist"],
+	"bin": {
+		"go-npm2": "index.js"
+	},
+	"scripts": {
+		"prepack": "pnpm run build",
+		"build": "vite build",
+		"dev": "tsx src/index.ts"
+	},
+	"dependencies": {
+		"@manypkg/get-packages": "2.2.0",
+		"tar": "6.2.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.5.3",
+		"@changesets/cli": "2.27.1",
+		"@types/node": "20",
+		"@types/tar": "6.1.11",
+		"execa": "8.0.1",
+		"tsx": "4.7.1",
+		"typescript": "5.3.3",
+		"vite": "5.1.1"
+	}
 }
