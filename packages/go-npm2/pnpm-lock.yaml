@@ -4,50 +4,39 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-importers:
+dependencies:
+  '@manypkg/get-packages':
+    specifier: 2.2.0
+    version: 2.2.0
+  tar:
+    specifier: 6.2.0
+    version: 6.2.0
 
-  .:
-    devDependencies:
-      '@biomejs/biome':
-        specifier: 1.5.3
-        version: 1.5.3
-      '@changesets/cli':
-        specifier: 2.27.1
-        version: 2.27.1
-      execa:
-        specifier: 8.0.1
-        version: 8.0.1
-      tsx:
-        specifier: 4.7.1
-        version: 4.7.1
-      typescript:
-        specifier: 5.3.3
-        version: 5.3.3
-
-  packages/go-npm2:
-    dependencies:
-      '@manypkg/get-packages':
-        specifier: 2.2.0
-        version: 2.2.0
-      tar:
-        specifier: 6.2.0
-        version: 6.2.0
-    devDependencies:
-      '@biomejs/biome':
-        specifier: 1.5.3
-        version: 1.5.3
-      '@types/node':
-        specifier: '20'
-        version: 20.11.17
-      '@types/tar':
-        specifier: 6.1.11
-        version: 6.1.11
-      typescript:
-        specifier: 5.3.3
-        version: 5.3.3
-      vite:
-        specifier: 5.1.1
-        version: 5.1.1(@types/node@20.11.17)
+devDependencies:
+  '@biomejs/biome':
+    specifier: 1.5.3
+    version: 1.5.3
+  '@changesets/cli':
+    specifier: 2.27.1
+    version: 2.27.1
+  '@types/node':
+    specifier: '20'
+    version: 20.11.17
+  '@types/tar':
+    specifier: 6.1.11
+    version: 6.1.11
+  execa:
+    specifier: 8.0.1
+    version: 8.0.1
+  tsx:
+    specifier: 4.7.1
+    version: 4.7.1
+  typescript:
+    specifier: 5.3.3
+    version: 5.3.3
+  vite:
+    specifier: 5.1.1
+    version: 5.1.1(@types/node@20.11.17)
 
 packages:
 

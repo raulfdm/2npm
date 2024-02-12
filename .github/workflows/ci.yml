@@ -16,7 +16,7 @@ jobs:
       - uses: pnpm/action-setup@v3
         name: Setup pnpm
         with:
-          version: 8
+          version: 8.15.1
 
       - uses: actions/setup-node@v4
         name: Setup Node
@@ -28,4 +28,4 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm build
+        run: pnpm -F go-npm2 run build
