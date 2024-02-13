@@ -38,11 +38,10 @@ jobs:
       - name: Deploy to Netlify
         id: netlify_deploy
         run: |
-          cd web
           prod_flag=""
           if [ "$BRANCH_NAME" = "main" ]; then prod_flag="--prod"; fi
           netlify deploy \
-            --dir dist \
+            --dir ./web/dist \
             --filter web \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --auth ${{ secrets.NETLIFY_API_TOKEN }} \
@@ -52,7 +51,7 @@ jobs:
         id: url_preview
         if: ${{ env.BRANCH_NAME != 'main' }}
         run: |
-          NETLIFY_PREVIEW_URL=$(cat deploy_output.txt | grep "Website draft URL: " | cut -d' ' -f4)
+          NETLIFY_PREVIEW_URL=$(sed -n 's/.*Website draft URL: \x1b\[39m\([^ ]*\).*/\1/p' deploy_output.txt)
           echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
 
       - name: Comment URL Preview on PR
