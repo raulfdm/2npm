@@ -69,12 +69,13 @@ jobs:
                 commit_sha: context.sha,
               })
               const issueNumber = result.data[0].number
-              if(issueNumber){
+              const urlPreview = process.env.NETLIFY_PREVIEW_URL
+              if(issueNumber && urlPreview){
                 await github.rest.issues.createComment({
                   issue_number: issueNumber,
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  body: 'Preview URL: ' + process.env.NETLIFY_PREVIEW_URL
+                  body: 'Preview URL: ' + urlPreview
                 })
               }else{
                 console.log('No PR found for commit ' + context.sha)
