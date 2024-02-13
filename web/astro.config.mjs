@@ -6,7 +6,7 @@ export default defineConfig({
   redirects: {
     "/": {
       status: 302,
-      destination: "/getting-started/about",
+      destination: "/getting-started",
     },
   },
   integrations: [
@@ -17,8 +17,9 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: "Getting started",
+          label: "Start Here",
           items: [
+            { label: "Getting Started", link: "/getting-started" },
             { label: "About", link: "/getting-started/about" },
             { label: "Inspiration", link: "/getting-started/inspiration" },
             { label: "How it works", link: "/getting-started/how-it-works" },
