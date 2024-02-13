@@ -51,7 +51,7 @@ jobs:
       - name: Generate URL Preview
         id: url_preview
         if: ${{ env.BRANCH_NAME != 'main' }}
-        run: jq -r '.deploy_url' output.json
+        run: jq -r '.deploy_url' deploy_output.json
 
       - name: Comment URL Preview on PR
         uses: actions/github-script@v7
