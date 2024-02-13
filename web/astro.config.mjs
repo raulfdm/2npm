@@ -26,8 +26,12 @@ export default defineConfig({
           ],
         },
         {
-          label: "Guides",
-          items: [{ label: "Example Guide", link: "/guides/example/" }],
+          label: "Guide",
+          items: [
+            { label: "Pre-requisites", link: "/guides/pre-requites" },
+            { label: "Go Package", link: "/guides/go-package" },
+            { label: "Go Release", link: "/guides/go-release" },
+          ],
         },
         {
           label: "Reference",

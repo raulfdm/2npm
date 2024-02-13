@@ -1,0 +1,61 @@
+---
+title: Go Package
+---
+
+import { Code } from "@astrojs/starlight/components";
+
+export const goMainCode = `package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	fmt.Println("Hello, World!")
+
+	fmt.Println("\\n--------Args-------")
+	for _, arg := range os.Args {
+		fmt.Println("- " + arg)
+	}
+	fmt.Println("----end of args----\\n")
+}`
+
+Suppose we want to create a simple Go project that prints "Hello world" and prints the list of the arguments passed.
+
+Let's create the project:
+
+```shell
+go mod init github.com/my-cli
+```
+
+Now, let's create our `main.go`:
+
+```shell
+touch main.go
+```
+
+And add the content:
+
+<Code code={goMainCode} lang="go" title="main.go" />
+
+If we run this program with Go:
+
+```shell
+go run . --flag --another flag
+```
+
+We'll have something like this:
+
+```
+Hello, World!
+
+--------Args-------
+- /var/folders/xp/ctz4hzmj66d5sz29pgpvlnjm0000gn/T/go-build715925125/b001/exe/my-cli
+- --flag
+- --another
+- flag
+----end of args----
+```
+
+Cool. Now, let's release this for all platforms.
