@@ -1,6 +1,7 @@
 {
 	"name": "go-npm2-workspace",
 	"private": true,
+	"type": "module",
 	"devDependencies": {
 		"@biomejs/biome": "1.5.3",
 		"@changesets/cli": "2.27.1",
