@@ -60,6 +60,7 @@ jobs:
           NETLIFY_PREVIEW_URL: ${{ steps.url_preview.outputs.NETLIFY_PREVIEW_URL }}
         with:
           script: |
+
             async function comment(){
               const result = await github.rest.repos.listPullRequestsAssociatedWithCommit({
                 owner: context.repo.owner,
@@ -68,6 +69,7 @@ jobs:
               })
               const issueNumber = result.data[0].number
               const urlPreview = process.env.NETLIFY_PREVIEW_URL
+              console.log('INFO',urlPreview, result.data[0])
               if(issueNumber && urlPreview){
                 await github.rest.issues.createComment({
                   issue_number: issueNumber,
