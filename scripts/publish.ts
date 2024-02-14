@@ -4,7 +4,7 @@ console.info("Starting release process");
 
 try {
 	console.log("Trying to publish");
-	await execaCommand("pnpm publish --no-git-checks", {
+	await execaCommand("pnpm publish --no-git-checks -r", {
 		shell: true,
 		all: true,
 	});
