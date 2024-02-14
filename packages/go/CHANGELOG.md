@@ -1,5 +1,13 @@
 # go-npm2
 
+## 0.0.2
+
+### Patch Changes
+
+- b636745: move utils logic to another package
+- Updated dependencies [b636745]
+  - @2npm/utils@0.0.0
+
 ## 0.1.0
 
 ### Minor Changes
