@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { getProjectConfig } from "./config";
 import {
 	createFolder,
@@ -6,7 +5,7 @@ import {
 	downloadFile,
 	moveFile,
 	untarFile,
-} from "./utils";
+} from "@2npm/utils";
 
 await install();
 

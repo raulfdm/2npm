@@ -1,0 +1,13 @@
+{
+	"name": "@2npm/tsconfig",
+	"version": "0.0.0-development",
+	"private": true,
+	"description": "Shared tsconfig for 2npm projects",
+	"devDependencies": {
+		"typescript": "5.3.3"
+	},
+	"packageManager": "pnpm@8.15.2",
+	"engines": {
+		"node": ">=18 <20"
+	}
+}

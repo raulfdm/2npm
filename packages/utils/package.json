@@ -1,0 +1,33 @@
+{
+	"name": "@2npm/utils",
+	"version": "0.0.0-development",
+	"private": true,
+	"description": "Set of utilities for the project",
+	"type": "module",
+	"module": "./dist/index.js",
+	"types": "./dist/src/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/src/index.d.ts"
+		}
+	},
+	"scripts": {
+		"prepare": "pnpm turbo build --filter @2npm/utils",
+		"build": "vite build"
+	},
+	"dependencies": {
+		"tar": "6.2.0"
+	},
+	"devDependencies": {
+		"@2npm/tsconfig": "workspace:*",
+		"@types/node": "18",
+		"@types/tar": "6.1.11",
+		"vite": "5.1.1",
+		"vite-plugin-dts": "3.7.2"
+	},
+	"packageManager": "pnpm@8.15.2",
+	"engines": {
+		"node": ">=18 <20"
+	}
+}
