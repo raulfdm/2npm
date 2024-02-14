@@ -15,16 +15,16 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v3
-        name: Setup pnpm
-        with:
-          version: 8.15.1
-
       - uses: actions/setup-node@v4
         name: Setup Node
         with:
           node-version: 20
           cache: "pnpm"
+
+      - uses: pnpm/action-setup@v3
+        name: Setup pnpm
+        with:
+          version: 8.15.2
 
       - name: Install Dependencies
         run: pnpm install
