@@ -33,7 +33,7 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm -F web run build
+        run: pnpm run build --filter web
 
       - name: Deploy to Netlify
         id: netlify_deploy
