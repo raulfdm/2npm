@@ -1,6 +1,6 @@
 {
 	"name": "@2npm/go",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Distribute and install Go binaries via NPM",
 	"private": false,
 	"publishConfig": {
@@ -14,7 +14,10 @@
 		"url": "https://github.com/raulfdm/2npm.git"
 	},
 	"author": "Raul Melo <contact@raulmelo.me>",
-	"files": ["bin", "dist"],
+	"files": [
+		"bin",
+		"dist"
+	],
 	"bin": {
 		"go-2npm": "./bin/index.js"
 	},
