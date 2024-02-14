@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    // targeting node18
+    "target": "es2022",
+    "lib": ["es2022"],
+    "module": "ESNext",
+
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "declaration": true,
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "verbatimModuleSyntax": true
+  }
+}
