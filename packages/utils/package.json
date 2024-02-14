@@ -19,5 +19,9 @@
 		"@2npm/tsconfig": "workspace:*",
 		"vite": "5.1.1",
 		"vite-plugin-dts": "3.7.2"
+	},
+	"packageManager": "pnpm@8.15.2",
+	"engines": {
+		"node": ">=18 <20"
 	}
 }
