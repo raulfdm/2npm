@@ -1,4 +1,4 @@
-name: CI
+name: CI - Packages
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  build:
+  quality:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -18,7 +18,7 @@ jobs:
       - uses: pnpm/action-setup@v3
         name: Setup pnpm
         with:
-          version: 8.15.1
+          version: 8.15.2
 
       - uses: actions/setup-node@v4
         name: Setup Node
@@ -30,4 +30,4 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm -F go-npm2 run build
+        run: pnpm -F "./packages/**" run build
