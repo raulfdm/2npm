@@ -16,6 +16,7 @@
 		"build": "vite build"
 	},
 	"devDependencies": {
+		"@2npm/tsconfig": "workspace:*",
 		"vite": "5.1.1",
 		"vite-plugin-dts": "3.7.2"
 	}

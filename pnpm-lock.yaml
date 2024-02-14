@@ -36,6 +36,9 @@ importers:
         specifier: 6.2.0
         version: 6.2.0
     devDependencies:
+      '@2npm/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       '@biomejs/biome':
         specifier: 1.5.3
         version: 1.5.3
@@ -52,8 +55,17 @@ importers:
         specifier: 5.1.1
         version: 5.1.1(@types/node@20.11.17)
 
+  packages/tsconfig:
+    devDependencies:
+      typescript:
+        specifier: 5.3.3
+        version: 5.3.3
+
   packages/utils:
     devDependencies:
+      '@2npm/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       vite:
         specifier: 5.1.1
         version: 5.1.1(@types/node@20.11.17)
