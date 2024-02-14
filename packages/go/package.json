@@ -28,6 +28,7 @@
 		"tar": "6.2.0"
 	},
 	"devDependencies": {
+		"@2npm/tsconfig": "workspace:*",
 		"@biomejs/biome": "1.5.3",
 		"@types/node": "20",
 		"@types/tar": "6.1.11",
