@@ -5,18 +5,23 @@
 	"description": "Set of utilities for the project",
 	"type": "module",
 	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
+	"types": "./dist/src/index.d.ts",
 	"exports": {
 		".": {
 			"import": "./dist/index.js",
-			"types": "./dist/index.d.ts"
+			"types": "./dist/src/index.d.ts"
 		}
 	},
 	"scripts": {
 		"build": "vite build"
 	},
+	"dependencies": {
+		"tar": "6.2.0"
+	},
 	"devDependencies": {
 		"@2npm/tsconfig": "workspace:*",
+		"@types/node": "18",
+		"@types/tar": "6.1.11",
 		"vite": "5.1.1",
 		"vite-plugin-dts": "3.7.2"
 	},
