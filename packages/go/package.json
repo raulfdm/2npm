@@ -1,7 +1,11 @@
 {
 	"name": "@2npm/go",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Distribute and install Go binaries via NPM",
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
 	"type": "module",
 	"license": "MIT",
 	"homepage": "https://2npm.netlify.app",
