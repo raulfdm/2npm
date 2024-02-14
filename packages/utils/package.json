@@ -1,0 +1,22 @@
+{
+	"name": "@2npm/utils",
+	"version": "0.0.0-development",
+	"private": true,
+	"description": "Set of utilities for the project",
+	"type": "module",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"scripts": {
+		"build": "vite build"
+	},
+	"devDependencies": {
+		"vite": "5.1.1",
+		"vite-plugin-dts": "3.7.2"
+	}
+}
