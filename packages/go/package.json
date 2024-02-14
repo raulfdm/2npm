@@ -24,14 +24,12 @@
 		"dev": "tsx src/index.ts"
 	},
 	"dependencies": {
-		"@manypkg/get-packages": "2.2.0",
-		"tar": "6.2.0"
+		"@2npm/utils": "workspace:*",
+		"@manypkg/get-packages": "2.2.0"
 	},
 	"devDependencies": {
 		"@2npm/tsconfig": "workspace:*",
-		"@biomejs/biome": "1.5.3",
-		"@types/node": "20",
-		"@types/tar": "6.1.11",
+		"@types/node": "18",
 		"typescript": "5.3.3",
 		"vite": "5.1.1"
 	},

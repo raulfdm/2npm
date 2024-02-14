@@ -13,6 +13,7 @@
 		}
 	},
 	"scripts": {
+		"prepare": "pnpm turbo build --filter @2npm/utils",
 		"build": "vite build"
 	},
 	"dependencies": {
