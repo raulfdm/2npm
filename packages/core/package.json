@@ -1,7 +1,10 @@
 {
 	"name": "@2npm/core",
 	"version": "0.0.1",
-	"private": true,
+	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
 	"description": "Core functionality for 2npm",
 	"type": "module",
 	"module": "./dist/index.js",
