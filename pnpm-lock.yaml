@@ -51,6 +51,9 @@ importers:
 
   packages/go:
     dependencies:
+      '@2npm/core':
+        specifier: workspace:*
+        version: link:../core
       '@2npm/utils':
         specifier: workspace:*
         version: link:../utils
