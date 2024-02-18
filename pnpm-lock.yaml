@@ -27,8 +27,33 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
 
+  packages/core:
+    dependencies:
+      valibot:
+        specifier: 0.28.1
+        version: 0.28.1
+    devDependencies:
+      '@2npm/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@types/node':
+        specifier: '18'
+        version: 18.19.15
+      '@types/tar':
+        specifier: 6.1.11
+        version: 6.1.11
+      vite:
+        specifier: 5.1.1
+        version: 5.1.1(@types/node@18.19.15)
+      vite-plugin-dts:
+        specifier: 3.7.2
+        version: 3.7.2(@types/node@18.19.15)(typescript@5.3.3)(vite@5.1.1)
+
   packages/go:
     dependencies:
+      '@2npm/core':
+        specifier: workspace:*
+        version: link:../core
       '@2npm/utils':
         specifier: workspace:*
         version: link:../utils
@@ -6006,6 +6031,10 @@ packages:
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+    dev: false
+
+  /valibot@0.28.1:
+    resolution: {integrity: sha512-zQnjwNJuXk6362Leu0+4eFa/SMwRom3/hEvH6s1EGf3oXIPbo2WFKDra9ymnbVh3clLRvd8hw4sKF5ruI2Lyvw==}
     dev: false
 
   /validate-npm-package-license@3.0.4:

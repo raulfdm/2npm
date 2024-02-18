@@ -1,5 +1,7 @@
 import path from "node:path";
 import { getPackagesSync } from "@manypkg/get-packages";
+import { getArchAndPlatform } from "@2npm/core";
+
 import {
 	ARCH_MAPPING,
 	PLATFORM_MAPPING,
@@ -11,8 +13,7 @@ import {
 } from "./schemas";
 
 export function getProjectConfig() {
-	const arch = getArch();
-	const platform = getPlatform();
+	const { arch, platform } = getSupportedArchAndPlatform();
 	const { rootDir, ...pkgJson } = readPackageJson();
 	const metadata = getMetadata(pkgJson, platform, arch);
 
@@ -35,28 +36,25 @@ export function getProjectConfig() {
 
 export type ProjectConfig = ReturnType<typeof getProjectConfig>;
 
-function getArch(): SupportedArchs {
-	// biome-ignore lint/suspicious/noExplicitAny: we don't know the process.arg
-	const isSupportedArch = supportedArches.includes(process.arch as any);
+function getSupportedArchAndPlatform() {
+	const { arch, platform } = getArchAndPlatform();
 
-	if (!isSupportedArch) {
+	// biome-ignore lint/suspicious/noExplicitAny: we don't know the process.arg
+	if (!supportedArches.includes(arch as any)) {
 		throw new Error(`Unsupported architecture: ${process.arch}`);
 	}
 
-	return process.arch as SupportedArchs;
-}
-
-function getPlatform(): SupportedPlatforms {
-	const isSupportedPlatform = supportedPlatforms.includes(
+	if (
 		// biome-ignore lint/suspicious/noExplicitAny: we don't know the process.platform value
-		process.platform as any,
-	);
-
-	if (!isSupportedPlatform) {
+		!supportedPlatforms.includes(process.platform as any)
+	) {
 		throw new Error(`Unsupported platform: ${process.platform}`);
 	}
 
-	return process.platform as SupportedPlatforms;
+	return {
+		arch: arch as SupportedArchs,
+		platform: platform as SupportedPlatforms,
+	};
 }
 
 function readPackageJson(): PackageJson & {

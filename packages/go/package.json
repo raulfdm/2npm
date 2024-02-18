@@ -14,10 +14,7 @@
 		"url": "https://github.com/raulfdm/2npm.git"
 	},
 	"author": "Raul Melo <contact@raulmelo.me>",
-	"files": [
-		"bin",
-		"dist"
-	],
+	"files": ["bin", "dist"],
 	"bin": {
 		"go-2npm": "./bin/index.js"
 	},
@@ -28,6 +25,7 @@
 	},
 	"dependencies": {
 		"@2npm/utils": "workspace:*",
+		"@2npm/core": "workspace:*",
 		"@manypkg/get-packages": "2.2.0"
 	},
 	"devDependencies": {

@@ -1,11 +1,11 @@
 {
-	"name": "@2npm/utils",
-	"version": "0.0.0",
+	"name": "@2npm/core",
+	"version": "0.0.1",
 	"private": false,
 	"publishConfig": {
 		"access": "public"
 	},
-	"description": "Set of utilities for the project",
+	"description": "Core functionality for 2npm",
 	"type": "module",
 	"module": "./dist/index.js",
 	"types": "./dist/src/index.d.ts",
@@ -16,11 +16,11 @@
 		}
 	},
 	"scripts": {
-		"prepare": "pnpm turbo build --filter @2npm/utils",
+		"prepare": "pnpm turbo build --filter @2npm/core",
 		"build": "vite build"
 	},
 	"dependencies": {
-		"tar": "6.2.0"
+		"valibot": "0.28.1"
 	},
 	"devDependencies": {
 		"@2npm/tsconfig": "workspace:*",
