@@ -12,29 +12,20 @@ export function getGoProjectConfig() {
 	const rootDir = process.cwd();
 	const pkgJson = getPackageJson(rootDir);
 	const config = getGoBinaryConfig(pkgJson.content);
-	console.log(config);
-
-	// const { arch, platform } = getSupportedArchAndPlatform();
-	// const metadata = getMetadata(pkgJson, platform, arch);
 
 	return {
 		rootDir,
 		pkgJson: config,
+		// TODO: fix this. It should respect the path the user defines
+		absoluteDistPath: path.join(rootDir, "/dist"),
+		temp: {
+			folder: path.join(rootDir, "temp"),
+			filename: "binary.tar.gz",
+			get filePath() {
+				return path.join(this.folder, this.filename);
+			},
+		},
 	} as const;
-	// return {
-	// 	// arch,
-	// 	// platform,
-	// 	pkgJson,
-	// 	// metadata,
-	// 	absoluteDistPath: `${rootDir}/dist`,
-	// 	temp: {
-	// 		folder: path.join(rootDir, "temp"),
-	// 		filename: "binary.tar.gz",
-	// 		get filePath() {
-	// 			return path.join(this.folder, this.filename);
-	// 		},
-	// 	},
-	// } as const;
 }
 
 function getPackageJson(rootDir: string) {

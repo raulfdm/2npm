@@ -1,4 +1,3 @@
-import path from "node:path";
 import { getArchAndPlatform } from "@2npm/core";
 import { getGoProjectConfig, type GoBinaryConfig } from "@2npm/core/legacy";
 
@@ -13,7 +12,7 @@ import {
 
 export function getProjectConfig() {
 	const { arch, platform } = getSupportedArchAndPlatform();
-	const { rootDir, pkgJson } = getGoProjectConfig();
+	const { rootDir, pkgJson, absoluteDistPath, temp } = getGoProjectConfig();
 	const metadata = getMetadata(pkgJson, platform, arch);
 
 	return {
@@ -22,14 +21,8 @@ export function getProjectConfig() {
 		pkgJson,
 		metadata,
 		rootDir,
-		absoluteDistPath: `${rootDir}/dist`,
-		temp: {
-			folder: path.join(rootDir, "temp"),
-			filename: "binary.tar.gz",
-			get filePath() {
-				return path.join(this.folder, this.filename);
-			},
-		},
+		absoluteDistPath,
+		temp,
 	} as const;
 }
 
