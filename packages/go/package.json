@@ -25,8 +25,7 @@
 	},
 	"dependencies": {
 		"@2npm/utils": "workspace:*",
-		"@2npm/core": "workspace:*",
-		"@manypkg/get-packages": "2.2.0"
+		"@2npm/core": "workspace:*"
 	},
 	"devDependencies": {
 		"@2npm/tsconfig": "workspace:*",
