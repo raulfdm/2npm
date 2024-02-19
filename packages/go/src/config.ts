@@ -1,11 +1,11 @@
 import path from "node:path";
 import { getPackagesSync } from "@manypkg/get-packages";
 import { getArchAndPlatform } from "@2npm/core";
+import { getGoProjectConfig, type GoBinaryConfig } from "@2npm/core/legacy";
 
 import {
 	ARCH_MAPPING,
 	PLATFORM_MAPPING,
-	type PackageJson,
 	type SupportedArchs,
 	type SupportedPlatforms,
 	supportedArches,
@@ -14,7 +14,7 @@ import {
 
 export function getProjectConfig() {
 	const { arch, platform } = getSupportedArchAndPlatform();
-	const { rootDir, ...pkgJson } = readPackageJson();
+	const { rootDir, pkgJson } = getGoProjectConfig();
 	const metadata = getMetadata(pkgJson, platform, arch);
 
 	return {
@@ -57,98 +57,8 @@ function getSupportedArchAndPlatform() {
 	};
 }
 
-function readPackageJson(): PackageJson & {
-	rootDir: string;
-} {
-	const { rootPackage, rootDir } = getPackagesSync(process.cwd());
-
-	const packageJsonResult = validatePackageJson(rootPackage?.packageJson);
-
-	if (!packageJsonResult.success) {
-		console.error("[PACKAGE_JSON_PARSING]", packageJsonResult.error);
-		process.exit(1);
-	}
-
-	return {
-		...packageJsonResult.data,
-		rootDir,
-	};
-}
-
-type ValidationResult =
-	| { success: true; data: PackageJson }
-	| { success: false; error: string };
-
-function validatePackageJson(pkgJson: unknown): ValidationResult {
-	if (pkgJson === null || typeof pkgJson !== "object") {
-		return {
-			success: false,
-			error: "Invalid package.json",
-		};
-	}
-
-	if (typeof pkgJson !== "object") {
-		return {
-			success: false,
-			error: "Invalid package.json",
-		};
-	}
-
-	if ("version" in pkgJson === false) {
-		return {
-			success: false,
-			error: "Invalid package.json: version is not a string",
-		};
-	}
-
-	if ("goBinary" in pkgJson === false) {
-		return {
-			success: false,
-			error: "Invalid package.json: goBinary is not an object",
-		};
-	}
-
-	if (typeof pkgJson.goBinary !== "object") {
-		return {
-			success: false,
-			error: "Invalid package.json: goBinary is not an object",
-		};
-	}
-
-	// biome-ignore lint/style/noNonNullAssertion: <explanation>
-	const goBinary = pkgJson.goBinary!;
-
-	if ("name" in goBinary === false) {
-		return {
-			success: false,
-			error: "Invalid package.json: goBinary.name is not a string",
-		};
-	}
-
-	if (typeof goBinary.name !== "string") {
-		return {
-			success: false,
-			error: "Invalid package.json: goBinary.name is not a string",
-		};
-	}
-
-	if ("url" in goBinary === false) {
-		return {
-			success: false,
-			error: "Invalid package.json: goBinary.url is not a string",
-		};
-	}
-
-	const result = {
-		success: true,
-		data: pkgJson as PackageJson,
-	} as const;
-
-	return result;
-}
-
 function getMetadata(
-	{ goBinary, version }: PackageJson,
+	{ goBinary, version }: GoBinaryConfig,
 	platform: SupportedPlatforms,
 	arch: SupportedArchs,
 ) {
