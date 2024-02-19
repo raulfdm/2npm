@@ -1,5 +1,4 @@
 import path from "node:path";
-import { getPackagesSync } from "@manypkg/get-packages";
 import { getArchAndPlatform } from "@2npm/core";
 import { getGoProjectConfig, type GoBinaryConfig } from "@2npm/core/legacy";
 
@@ -73,6 +72,11 @@ function getMetadata(
 	if (platform === "win32") {
 		binaryName += ".exe";
 	}
+
+	console.log({
+		ARCH: arch,
+		PLATFORM: platform,
+	});
 
 	// Interpolate variables in URL, if necessary
 	url = url.replace(/{{arch}}/g, ARCH_MAPPING[arch]);

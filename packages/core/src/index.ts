@@ -19,7 +19,7 @@ export function getArchAndPlatform() {
 
 	return {
 		arch: arch.output,
-		platform: arch.output,
+		platform: platform.output,
 	};
 }
 
