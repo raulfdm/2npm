@@ -1,5 +1,20 @@
 # go-npm2
 
+## 0.1.0
+
+### Minor Changes
+
+- f20fa1c: use core package to get arch and platform from process.env
+- dde4fa4: move logic to handle "goBinary" config to core package
+
+### Patch Changes
+
+- Updated dependencies [f20fa1c]
+- Updated dependencies [dde4fa4]
+- Updated dependencies [f20fa1c]
+  - @2npm/core@0.1.0
+  - @2npm/utils@0.0.1
+
 ## 0.0.2
 
 ### Patch Changes
