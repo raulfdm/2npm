@@ -6,10 +6,10 @@
 		"my-cli": "./index.js"
 	},
 	"scripts": {
-		"postinstall": "go-npm2"
+		"postinstall": "go-2npm"
 	},
 	"dependencies": {
-		"go-npm2": "0.0.3"
+		"@2npm/go": "workspace:*"
 	},
 	"goBinary": {
 		"name": "go-demo-cli",

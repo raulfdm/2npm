@@ -14,9 +14,9 @@
 		"url": "https://github.com/raulfdm/2npm.git"
 	},
 	"author": "Raul Melo <contact@raulmelo.me>",
-	"files": ["bin", "dist"],
+	"files": ["bin.js", "dist"],
 	"bin": {
-		"go-2npm": "./bin/index.js"
+		"go-2npm": "./bin.js"
 	},
 	"scripts": {
 		"prepack": "pnpm run build",
