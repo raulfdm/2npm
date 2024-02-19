@@ -25,12 +25,3 @@ export const PLATFORM_MAPPING: Record<SupportedPlatforms, string> = {
 	win32: "windows",
 	freebsd: "freebsd",
 } as const;
-
-export type PackageJson = {
-	version: string;
-	goBinary: {
-		name: string;
-		path: string;
-		url: string;
-	};
-};

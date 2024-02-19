@@ -6,6 +6,7 @@ export default defineConfig({
 		target: "node18",
 		lib: {
 			entry: "src/index.ts",
+			fileName: "go-2npm",
 			formats: ["es"],
 		},
 		outDir: "dist",

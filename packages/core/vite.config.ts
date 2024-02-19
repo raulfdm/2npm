@@ -8,7 +8,10 @@ export default defineConfig({
 		ssr: true,
 		target: "node18",
 		lib: {
-			entry: "src/index.ts",
+			entry: {
+				index: "./src/index.ts",
+				legacy: "./src/legacy.ts",
+			},
 			formats: ["es"],
 		},
 	},

@@ -1,4 +1,4 @@
-import { string, safeParse } from "valibot";
+import { string, safeParse, object, optional, type Output } from "valibot";
 
 export function getArchAndPlatform() {
 	const arch = safeParse(string(), process.arch);
@@ -19,6 +19,26 @@ export function getArchAndPlatform() {
 
 	return {
 		arch: arch.output,
-		platform: arch.output,
+		platform: platform.output,
 	};
 }
+
+const _2npmConfig = object({
+	binary: object({
+		name: optional(string()),
+		url: string(),
+	}),
+});
+
+type _2npmConfig = Output<typeof _2npmConfig>;
+
+export function getProjectConfig() {}
+
+const fakePackage = {
+	"2npm": {
+		binary: {
+			url: "http://example.com",
+			name: "example",
+		},
+	} satisfies _2npmConfig,
+};
