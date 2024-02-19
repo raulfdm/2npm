@@ -66,11 +66,6 @@ function getMetadata(
 		binaryName += ".exe";
 	}
 
-	console.log({
-		ARCH: arch,
-		PLATFORM: platform,
-	});
-
 	// Interpolate variables in URL, if necessary
 	url = url.replace(/{{arch}}/g, ARCH_MAPPING[arch]);
 	url = url.replace(/{{platform}}/g, PLATFORM_MAPPING[platform]);

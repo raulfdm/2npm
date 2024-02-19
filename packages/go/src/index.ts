@@ -14,8 +14,6 @@ async function install() {
 
 	const projectConfig = getProjectConfig();
 
-	console.log(projectConfig);
-
 	createFolder(projectConfig.absoluteDistPath);
 	createFolder(projectConfig.temp.folder);
 
