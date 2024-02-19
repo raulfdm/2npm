@@ -27,12 +27,6 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
 
-  examples/go:
-    dependencies:
-      '@2npm/go':
-        specifier: workspace:*
-        version: link:../../packages/go
-
   packages/core:
     dependencies:
       valibot:
